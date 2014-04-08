@@ -10,32 +10,34 @@ struct Node{
 void showlist(Node* head)
 {
 	Node* p = head;
-	while(!=NULL){
-		cout << *p << ' ' ;
-		p = p->next ;//(*p).next;
-		// if(p==head) break;
+	while(p!=NULL){
+		cout << *p << ' ';
+		p = (*p).next;
 	}
 	cout << endl;
 }
-int main(()
+
+int main()
 {
-	Node a(10), b(20), c(30), d(40), e(50), f(60);
+	Node a(10),b(20),c(30),d(40),e(50),f(60) ;
 	a.next = &b;
 	b.next = &c;
 	c.next = &d;
 	showlist(&a);
-	e.next = b.next;//&c;
-	b.next = &e;
+	Node* & p = b.next;
+	e.next = p;// b.next;
+	p = &e;//b.next = &e;
+	showlist(&a);
 	Node*& q = a.next;
-	f.next = q;// q== a.next==&b
-	q = &f; // a.next = &f
-	sholist(&a);
-	Node* k = new Node(70);
+	f.next = q;//q==a.next==&b
+	q = &f;//a.next = &f
+	showlist(&a);
+	Node* k = new Node(80);
 	Node*& r = c.next;
 	k->next = r;
 	r = k;
 	showlist(&a);
 	delete k;
-}
-
 	
+
+}
